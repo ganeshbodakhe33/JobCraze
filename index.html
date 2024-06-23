@@ -61,7 +61,7 @@
         }
 
         #job-listings {
-            max-width: 1000px;
+            max-width: 1450px;
             margin: 20px auto;
             padding: 20px;
             background-color: white;
@@ -147,7 +147,65 @@
         document.addEventListener('DOMContentLoaded', () => {
             const csvData = `
 job_name,company_name,company_location,salary,job_description,job_apply_url
-"Senior Manager Data Science Ring Data Science & Engineering",Amazon,"Hawthorne-CA USA",Not Disclosed,"Basic qualifications:Quantitative Masters Degree or Quantitative Bachelors Degree. May have PhD in a discipline not directly applicable such as chemistry or biology.10+ years as a scientist or science manager7+ years of applying data science models/techniques for large-scale application and building automated analytical systems experience5+ years managing scientists or engineers5+ years experience with SQL2+ years managing managersKnowledge of Python or other scripting language...Read more",https://www.amazon.jobs/en/jobs/2641409/senior-manager-data-science-ring-data-science-engineering
+Staff Software Engineer - Fullstack,Uber,Hyderabad - India,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/132408
+Senior Software Engineer,Uber,San Francisco - California,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/132326
+Software Engineer II - iOS,Uber,Hyderabad - India,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/131789
+Software Engineer II - Android,Uber,Hyderabad - India,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/131375
+Staff Software Engineer - iOS,Uber,Sunnyvale - California,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/130711
+Senior Software Engineer - Web,Uber,Bangalore - India,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/129773
+Staff Software Engineer - Backend,Uber,Aarhus - Denmark,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/128297
+Software Engineer - Delivery Matching,Uber,New York - New York,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/131563
+Software Engineer II - GenAI,Uber,San Francisco - California,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/128266
+Sr Software Engineer - Fullstack,Uber,Bangalore - India,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/131298
+Staff Software Engineer - Maps,Uber,Amsterdam - Netherlands,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/131221
+Sr Software Engineer - Fullstack,Uber,Sunnyvale - California,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/131208
+Software Engineer - Delivery Matching,Uber,Seattle - Washington,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/131566
+Senior Software Engineer Earner,Uber,Seattle - Washington,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/131716
+Staff Software Engineer (iOS),Uber,Hyderabad - India,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/132032
+Software Engineer II (Frontend),Uber,Bangalore - India,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/131187
+Staff Backend Software Engineer,Uber,Amsterdam - Netherlands,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/129213
+Staff Software Engineer,Uber,Seattle - Washington,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/130157
+Staff Software Engineer,Uber,Bangalore - India,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/128839
+Sr Software Engineer,Uber,Sunnyvale - California,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/130454
+Senior Software Engineer,Uber,San Francisco - California,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/131865
+Senior Software Engineer - Frontend,Uber,Hyderabad - India,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/129547
+Software Engineer II - iOS,Uber,Sunnyvale - California,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/131212
+Senior Software Engineer,Uber,Hyderabad - India,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/130081
+Staff Software Engineer - Risk,Uber,Hyderabad - India,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/130013
+Sr Software Engineer - Earner,Uber,Sunnyvale - California,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/131507
+Software Engineer II - iOS,Uber,Seattle - Washington,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/130706
+Staff Software Engineer - Earner,Uber,Sunnyvale - California,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/131508
+Senior Software Engineer - Maps,Uber,Amsterdam - Netherlands,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/128421
+Sr Staff Software Engineer,Uber,Bangalore - India,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/129330
+Sr. Software Engineer - Android - Maps,Uber,Sunnyvale - California,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/132342
+Software Engineer II - Driver Pricing,Uber,San Francisco - California,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/131689
+Staff Software Engineer - Delivery Matching,Uber,Seattle - Washington,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/131565
+Software Engineer II - Backend - Mobility,Uber,Sao Paulo - Brazil,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/128729
+Staff Software Engineer - Algorithmic Pricing,Uber,San Francisco - California,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/131687
+Sr Software Engineer - Machine Learning,Uber,San Francisco - California,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/131054
+2024 Software Engineering Internship - Amsterdam,Uber,Amsterdam - Netherlands,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/125074
+Senior Software Engineer - Mobile Security,Uber,Amsterdam - Netherlands,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/127397
+Software Engineer II - Android - Ads,Uber,Sao Paulo - Brazil,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/131788
+Senior Fullstack Software Engineer - Maps,Uber,Amsterdam - Netherlands,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/132129
+2024 Graduate Software Engineer - Amsterdam,Uber,Amsterdam - Netherlands,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/129116
+Software Engineer II - iOS - Ads,Uber,Sao Paulo - Brazil,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/131863
+Staff Software Engineer - Marketplace Logistics,Uber,Toronto - Canada,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/131430
+Senior Software Engineer - Shared Rides,Uber,New York - New York,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/131463
+Senior Staff Software Engineer - Marketplace,Uber,San Francisco - California,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/131468
+Software Engineer II - Backend - Grocery,Uber,Sao Paulo - Brazil,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/130899
+Sr Software Engineer - Front end,Uber,Hyderabad - India,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/127249
+Software Engineer II - Backend - Grocery,Uber,Santiago - Chile,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/128778
+Staff Software Engineer - ML Engineering,Uber,Hyderabad - India,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/132398
+Staff Software Engineer - Shared Rides,Uber,San Francisco - California,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/131452
+Senior Staff Software Engineer - Bets,Uber,San Francisco - California,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/131286
+Senior Software Engineer - Desktop Applications,Uber,New York - New York,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/128907
+Sr Software Engineer - Stateful Platform,Uber,Aarhus - Denmark,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/130387
+Senior Software Engineer - Mobile Security,Uber,Not Mentioned,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/129705
+Staff Software Engineer - Catalog Platform,Uber,Aarhus - Denmark,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/126913
+Senior Software Engineer - Privacy Engineering,Uber,Amsterdam - Netherlands,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/130466
+Senior Staff Software Engineer - Maps,Uber,Toronto - Canada,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/132277
+Software Engineer II (Data Engineering),Uber,Toronto - Canada,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/132073
+Software Engineer II - Backend - Risk,Uber,Sao Paulo - Brazil,Not Disclosed,Not Available,https://www.uber.com/global/en//careers/list/129071
 "Data Scientist WWDE Data Science",Amazon,"Bellevue-WA USA",Not Disclosed,"Basic qualifications:2+ years of data scientist or similar role involving data extraction analysis statistical modeling and communication experience2+ years of data querying languages (e.g. SQL) scripting languages (e.g. Python) or statistical/mathematical software (e.g. R SAS-Matlab etc.) experienceMaster's degree in a quantitative field or Bachelor's degree and 5+ years of a quantitative field such as statistics mathematics data science business analytics economics finance engineering or computer science experience2+ years of data querying languages (e.g. SQL  Hadoop/Hive) experienceProficiency in data visualizations and dashboarding using AWS QuickSight Or Tableau and in MS Excel (including Pivots VB etc.)Experience in data mining ETL etc. and using databases in a business environment with large-scale  complex datasets...Read more",https://www.amazon.jobs/en/jobs/2586461/data-scientist-wwde-data-science
 "Data Scientist-Supply Chain Data Science",Amazon,"Mexico City DIF MEX",Not Disclosed,"Basic qualifications:3+ years of data scientist or similar role involving data extraction analysis statistical modeling and communication experience3+ years of data querying languages (e.g. SQL Hadoop/Hive) experience3+ years of machine learning/statistical modeling data analysis tools and techniques and parameters that affect their performance experienceBachelor's degree in a quantitative fieldExperience applying theoretical models in an applied environmentFluent in written and spoken Spanish and English (b2+)...Read more",https://www.amazon.jobs/en/jobs/2634301/data-scientist-supply-chain-data-science
 "Business Intelligence Engineer-Community Data & Science",Amazon,"Berlin-BE DEU",Not Disclosed,"Basic qualifications:Experience in analyzing and interpreting data with Redshift-Oracle NoSQL etc.Experience with data visualization using Tableau  Quicksight  or similar toolsExperience with data modeling warehousing and building ETL pipelinesExperience in Statistical Analysis packages such as R SAS and MatlabExperience using SQL to pull data from a database or data warehouse and scripting experience (Python) to process data for modelingExperience with SQLExperience in the data/BI space...Read more",https://www.amazon.jobs/en/jobs/2633416/business-intelligence-engineer-community-data-science
