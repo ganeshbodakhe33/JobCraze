@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Listings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        #job-listings {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .job {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+
+        .job:last-child {
+            border-bottom: none;
+        }
+
+        .job h2 {
+            margin: 0 0 10px;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .job p {
+            margin: 5px 0;
+            line-height: 1.5;
+        }
+
+        .job .location, .job .type {
+            font-style: italic;
+            color: #666;
+        }
+
+        .job .salary {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .job .apply a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Job Listings</h1>
+    </header>
+    <div id="job-listings"></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const csvData = `
+job_name,company_name,company_location,salary,job_description,job_apply_url
+Frontend Developer,Company A,New York,$100k,Developing front-end web applications,https://apply.companyA.com/frontend
+Sr Software Developer,Alliance Bernstein,Pune,Not disclosed	,The ideal candidate should have the following) Qualifications,https://www.naukri.com/job-listings-sr-software-developer-python-alliance-bernstein-pune-2-to-6-years-070224501649
+Python Developer (Data Science),Wipro3.839002 ,Pune Chennai Bengaluru,Not disclosed,Shift : Evening Shift . Cloud experience is preferred (Azure)Experience Level 3 to 6 Ye...,https://www.naukri.com/job-listings-python-developer-data-science-wipro-pune-chennai-bengaluru-3-to-6-years-290124000659
+immediate joiners  Python Developer Freshers & Experience,Coriolis Tech,Pune Maharashtra(Kharadi +1),4.25-6.5 Lacs PA,Role & responsibilities  Objectives of this roleDevelop-test and maintain high-quality...",https://www.naukri.com/job-listings-immediate-joiners-python-developer-freshers-experience-coriolis-tech-pune-maharashtra-0-to-1-years-090224004828
+Python Developer,Synechron3.82305  Reviews,"Hybrid - Pune, Maharashtra",Not disclosed,"Experience with file handling in Python, particularly with JSON and CSV formats",https://www.naukri.com/job-listings-python-developer-synechron-pune-maharashtra-5-to-10-years-080224011271
+Lead/Senior Python Developer,Zymr Systems3.273  Reviews,"Pune, Maharashtra, Ahmedabad, Bengaluru",Not disclosed,"Required Educational Qualification: UG: BE/ B Tech, PG: MCA, ME / M TechSystem Architec...",https://www.naukri.com/job-listings-lead-senior-python-developer-zymr-systems-pune-maharashtra-ahmedabad-bengaluru-5-to-10-years-261223005654
+Python Software Developer,Cygnus Professionals3.02  Reviews,Pune,Not disclosed,"Experience in software architecture, system design & development. . Networking fundamen...",https://www.naukri.com/job-listings-python-software-developer-cygnus-professionals-pune-7-to-10-years-080224008569
+Full Stack Python Developer,Deutsche Bank4.12820  Reviews,Pune,Not disclosed,"Practical experience of web technologies, frameworks and tools like React.js, HTML, CSS...",https://www.naukri.com/job-listings-full-stack-python-developer-deutsche-bank-ag-pune-3-to-5-years-020224905039
+"Senior Software Engineer - Python, Scala",NICE3.8377  Reviews,Hybrid - Pune,Not disclosed," Description*Senior Software Engineer designs, develops, tests and maintains the NICE i...",https://www.naukri.com/job-listings-senior-software-engineer-python-scala-nice-interactive-pune-4-to-8-years-080224008221
+
+`; // Add more job listings here
+
+            const jobs = parseCSV(csvData);
+            displayJobs(jobs);
+        });
+
+        function parseCSV(data) {
+            const rows = data.trim().split('\n');
+            const header = rows[0].split(',');
+            const jobs = rows.slice(1).map(row => {
+                const values = row.split(',');
+                let job = {};
+                header.forEach((col, i) => {
+                    job[col.trim()] = values[i].trim();
+                });
+                return job;
+            });
+            return jobs;
+        }
+
+        function displayJobs(jobs) {
+            const jobListings = document.getElementById('job-listings');
+            jobs.forEach(job => {
+                const jobElement = document.createElement('div');
+                jobElement.className = 'job';
+                
+                const title = document.createElement('h2');
+                title.textContent = job.job_name;
+                jobElement.appendChild(title);
+
+                const company = document.createElement('p');
+                company.textContent = `Company: ${job.company_name}`;
+                jobElement.appendChild(company);
+
+                const location = document.createElement('p');
+                location.className = 'location';
+                location.textContent = `Location: ${job.company_location}`;
+                jobElement.appendChild(location);
+
+                const salary = document.createElement('p');
+                salary.className = 'salary';
+                salary.textContent = `Salary: ${job.salary}`;
+                jobElement.appendChild(salary);
+
+                const description = document.createElement('p');
+                description.textContent = `Description: ${job.job_description}`;
+                jobElement.appendChild(description);
+
+                const apply = document.createElement('p');
+                apply.className = 'apply';
+                const applyLink = document.createElement('a');
+                applyLink.href = job.job_apply_url;
+                applyLink.target = '_blank';
+                applyLink.textContent = 'Apply Here';
+                apply.appendChild(applyLink);
+                jobElement.appendChild(apply);
+
+                jobListings.appendChild(jobElement);
+            });
+        }
+    </script>
+</body>
+</html>
