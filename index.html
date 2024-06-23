@@ -6,35 +6,85 @@
     <title>Job Listings</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f4f4f9;
             color: #333;
             margin: 0;
             padding: 0;
         }
 
+        @keyframes backgroundAnimation {
+            0% { background-color: #4CAF50; }
+            50% { background-color: #3E8E41; }
+            100% { background-color: #4CAF50; }
+        }
+
+        @keyframes textAnimation {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
         header {
-            background-color: #4CAF50;
+            background: linear-gradient(90deg, #2183c9, #130967);
             color: white;
             text-align: center;
-            padding: 1rem 0;
+            padding: 2rem 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: backgroundAnimation 5s infinite;
+            position: relative;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            /* animation: textAnimation 2s infinite; */
+        }
+
+        .back-button {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            background-color: #eef5f6;
+            color: white;
+            border: none;
+            
+            
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .back-button a {text-decoration: none;}
+        .back-button:hover {
+            background-color: #b2bcf1;
         }
 
         #job-listings {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 20px auto;
             padding: 20px;
             background-color: white;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
         }
 
         .job {
-            border-bottom: 1px solid #ddd;
-            padding: 10px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px 0;
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 100%;
+            box-sizing: border-box;
         }
 
-        .job:last-child {
-            border-bottom: none;
+        .job:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
         }
 
         .job h2 {
@@ -59,32 +109,55 @@
         }
 
         .job .apply a {
-            color: #4CAF50;
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 15px;
+            background-color: #8e4bd0;
+            color: white;
             text-decoration: none;
-            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .job .apply a:hover {
+            background-color: #3E8E41;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(90deg, #2183c9, #130967);
+            /* background-color: #4CAF50; */
+            color: white;
+            margin-top: 20px;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
 <body>
     <header>
+        <button class="back-button" onclick="history.back()"><a href="https://jobcraze.odoo.com/"><b>Back</b></a></button>
         <h1>Job Listings</h1>
     </header>
     <div id="job-listings"></div>
+    <footer>
+        <p>By Ganesh Bodakhe</p>
+    </footer>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const csvData = `
 job_name,company_name,company_location,salary,job_description,job_apply_url
-Frontend Developer,Company A,New York,$100k,Developing front-end web applications,https://apply.companyA.com/frontend
-Sr Software Developer,Alliance Bernstein,Pune,Not disclosed	,The ideal candidate should have the following) Qualifications,https://www.naukri.com/job-listings-sr-software-developer-python-alliance-bernstein-pune-2-to-6-years-070224501649
-Python Developer (Data Science),Wipro3.839002 ,Pune Chennai Bengaluru,Not disclosed,Shift : Evening Shift . Cloud experience is preferred (Azure)Experience Level 3 to 6 Ye...,https://www.naukri.com/job-listings-python-developer-data-science-wipro-pune-chennai-bengaluru-3-to-6-years-290124000659
-immediate joiners  Python Developer Freshers & Experience,Coriolis Tech,Pune Maharashtra(Kharadi +1),4.25-6.5 Lacs PA,Role & responsibilities  Objectives of this roleDevelop-test and maintain high-quality...",https://www.naukri.com/job-listings-immediate-joiners-python-developer-freshers-experience-coriolis-tech-pune-maharashtra-0-to-1-years-090224004828
-Python Developer,Synechron3.82305  Reviews,"Hybrid - Pune, Maharashtra",Not disclosed,"Experience with file handling in Python, particularly with JSON and CSV formats",https://www.naukri.com/job-listings-python-developer-synechron-pune-maharashtra-5-to-10-years-080224011271
-Lead/Senior Python Developer,Zymr Systems3.273  Reviews,"Pune, Maharashtra, Ahmedabad, Bengaluru",Not disclosed,"Required Educational Qualification: UG: BE/ B Tech, PG: MCA, ME / M TechSystem Architec...",https://www.naukri.com/job-listings-lead-senior-python-developer-zymr-systems-pune-maharashtra-ahmedabad-bengaluru-5-to-10-years-261223005654
-Python Software Developer,Cygnus Professionals3.02  Reviews,Pune,Not disclosed,"Experience in software architecture, system design & development. . Networking fundamen...",https://www.naukri.com/job-listings-python-software-developer-cygnus-professionals-pune-7-to-10-years-080224008569
-Full Stack Python Developer,Deutsche Bank4.12820  Reviews,Pune,Not disclosed,"Practical experience of web technologies, frameworks and tools like React.js, HTML, CSS...",https://www.naukri.com/job-listings-full-stack-python-developer-deutsche-bank-ag-pune-3-to-5-years-020224905039
-"Senior Software Engineer - Python, Scala",NICE3.8377  Reviews,Hybrid - Pune,Not disclosed," Description*Senior Software Engineer designs, develops, tests and maintains the NICE i...",https://www.naukri.com/job-listings-senior-software-engineer-python-scala-nice-interactive-pune-4-to-8-years-080224008221
-
-`; // Add more job listings here
+"Senior Manager Data Science Ring Data Science & Engineering",Amazon,"Hawthorne-CA USA",Not Disclosed,"Basic qualifications:Quantitative Masters Degree or Quantitative Bachelors Degree. May have PhD in a discipline not directly applicable such as chemistry or biology.10+ years as a scientist or science manager7+ years of applying data science models/techniques for large-scale application and building automated analytical systems experience5+ years managing scientists or engineers5+ years experience with SQL2+ years managing managersKnowledge of Python or other scripting language...Read more",https://www.amazon.jobs/en/jobs/2641409/senior-manager-data-science-ring-data-science-engineering
+"Data Scientist WWDE Data Science",Amazon,"Bellevue-WA USA",Not Disclosed,"Basic qualifications:2+ years of data scientist or similar role involving data extraction analysis statistical modeling and communication experience2+ years of data querying languages (e.g. SQL) scripting languages (e.g. Python) or statistical/mathematical software (e.g. R SAS-Matlab etc.) experienceMaster's degree in a quantitative field or Bachelor's degree and 5+ years of a quantitative field such as statistics mathematics data science business analytics economics finance engineering or computer science experience2+ years of data querying languages (e.g. SQL  Hadoop/Hive) experienceProficiency in data visualizations and dashboarding using AWS QuickSight Or Tableau and in MS Excel (including Pivots VB etc.)Experience in data mining ETL etc. and using databases in a business environment with large-scale  complex datasets...Read more",https://www.amazon.jobs/en/jobs/2586461/data-scientist-wwde-data-science
+"Data Scientist-Supply Chain Data Science",Amazon,"Mexico City DIF MEX",Not Disclosed,"Basic qualifications:3+ years of data scientist or similar role involving data extraction analysis statistical modeling and communication experience3+ years of data querying languages (e.g. SQL Hadoop/Hive) experience3+ years of machine learning/statistical modeling data analysis tools and techniques and parameters that affect their performance experienceBachelor's degree in a quantitative fieldExperience applying theoretical models in an applied environmentFluent in written and spoken Spanish and English (b2+)...Read more",https://www.amazon.jobs/en/jobs/2634301/data-scientist-supply-chain-data-science
+"Business Intelligence Engineer-Community Data & Science",Amazon,"Berlin-BE DEU",Not Disclosed,"Basic qualifications:Experience in analyzing and interpreting data with Redshift-Oracle NoSQL etc.Experience with data visualization using Tableau  Quicksight  or similar toolsExperience with data modeling warehousing and building ETL pipelinesExperience in Statistical Analysis packages such as R SAS and MatlabExperience using SQL to pull data from a database or data warehouse and scripting experience (Python) to process data for modelingExperience with SQLExperience in the data/BI space...Read more",https://www.amazon.jobs/en/jobs/2633416/business-intelligence-engineer-community-data-science
+"Games Data Scientist AGS Data Science",Amazon,"Seattle-WA  USA",Not Disclosed,"Basic qualifications:3+ years of data scientist experience3+ years of data querying languages (e.g. SQL)  scripting languages (e.g. Python) or statistical/mathematical software (e.g. R SAS  Matlab  etc.) experience3+ years of machine learning/statistical modeling data analysis tools and techniques and parameters that affect their performance experience3+ years of Games Industry (supporting title Development  Release  or Live Ops) experience...Read more",https://www.amazon.jobs/en/jobs/2678074/games-data-scientist-ags-data-science
+"Senior Product Manager  Tech (Data Science)  Data Products @AmazonPay",Amazon,"Bengaluru KA-IND",Not Disclosed,"Basic qualifications:Bachelor's degreeExperience in representing and advocating for a variety of critical customers and stakeholders during executive-level prioritization and planningExperience contributing to engineering discussions around technology decisions and strategy related to a product7+ years of technical product or program management experienceExperience owning/driving roadmap strategy and definitionExperience with feature delivery and tradeoffs of a product...Read more",https://www.amazon.jobs/en/jobs/2521858/senior-product-manager-tech-data-science-data-products-amazonpay
+"Data Scientist Supply Chain Data Science",Amazon,"Mexico City DIF-MEX",Not Disclosed,"Basic qualifications:3+ years of data scientist or similar role involving data extraction analysis statistical modeling and communication experience3+ years of data querying languages (e.g. SQL Hadoop/Hive) experience3+ years of machine learning/statistical modeling data analysis tools and techniques and parameters that affect their performance experienceBachelor's degree in a quantitative fieldExperience applying theoretical models in an applied environmentFluent in written and spoken Spanish and English (b2+)...Read more",https://www.amazon.jobs/en/jobs/2586896/data-scientist-supply-chain-data-science
+"Data Science Manager Middle Mile Transportation",Amazon,"Bellevue-USA",Not Disclosed,"Basic qualifications:Master's degree5+ years of applying statistical models for large-scale application and building automated analytical systems experience...Read more",https://www.amazon.jobs/en/jobs/2612635/data-science-manager-middle-mile-transportation
+"Data Science Manager NA Transportation Service",Amazon,"Bellevue-USA",Not Disclosed,"Basic qualifications:5+ years of building quantitative solutions as a scientist or science manager experience2+ years of scientists or machine learning engineers management experience5+ years of applying statistical models for large-scale application and building automated analytical systems experienceKnowledge of Python or R or other scripting languageMaster's degree in computer science mathematics statistics machine learning or equivalent quantitative field...Read more",https://www.amazon.jobs/en/jobs/2676811/data-science-manager-na-transportation-service
+"Business Intelligence Engineer Supply Chain Data Science",Amazon,"Mexico City-MEX",Not Disclosed,"Basic qualifications:Experience using SQL to pull data from a database or data warehouse and scripting experience (Python) to process data for modelingExperience in data mining . and using databases in a business environment with large-scale  complex datasetsExperience with data visualization using Tableau  Quicksight  or similar toolsBachelor's degree in sciences  engineering  finance or equivalent+3 years of experience in business intelligence or related roleFluent in  Spanish and English (b2+)2+ years of experience with AWS or similar....Read more",https://www.amazon.jobs/en/jobs/2658767/business-intelligence-engineer-supply-chain-data-science
+            `; // Add more job listings here
 
             const jobs = parseCSV(csvData);
             displayJobs(jobs);
