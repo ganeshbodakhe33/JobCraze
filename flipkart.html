@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flipkart Jobs</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        @keyframes backgroundAnimation {
+            0% { background-color: #4CAF50; }
+            50% { background-color: #3E8E41; }
+            100% { background-color: #4CAF50; }
+        }
+
+        @keyframes textAnimation {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        header {
+            background: linear-gradient(90deg, #2183c9, #130967);
+            color: white;
+            text-align: center;
+            padding: 2.5rem 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: backgroundAnimation 5s infinite;
+            position: relative;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            /* animation: textAnimation 2s infinite; */
+        }
+
+        
+
+        #job-listings {
+            max-width: 1450px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .job {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px 0;
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .job:hover {
+            transform: scale(1.0);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .job h2 {
+            margin: 0 0 10px;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .job p {
+            margin: 5px 0;
+            line-height: 1.5;
+        }
+
+        .job .location, .job .type {
+            font-style: italic;
+            color: #666;
+        }
+
+        .job .salary {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .job .apply a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 15px;
+            background-color: #8e4bd0;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .job .apply a:hover {
+            background-color: #3E8E41;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(90deg, #2183c9, #130967);
+            /* background-color: #4CAF50; */
+            color: white;
+            margin-top: 20px;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- <button class="back-button"><a href="https://jobcraze.odoo.com/"><b>Back</b></a></button> -->
+        <h1>Flipkart Jobs</h1>
+    </header>
+    <div id="job-listings"></div>
+    <footer>
+        <p>By Ganesh Bodakhe</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const csvUrl = 'flipkart_jobs_data.csv'; // Replace with your GitHub CSV URL
+
+    fetch(csvUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Failed to fetch CSV file (${response.status} ${response.statusText})`);
+            }
+            return response.text();
+        })
+        .then(csvData => {
+            const jobs = parseCSV(csvData);
+            displayJobs(jobs);
+        })
+        .catch(error => console.error('Error fetching or parsing CSV:', error));
+});
+
+function parseCSV(data) {
+    const rows = data.trim().split('\n');
+    const header = rows[0].split(',');
+    const jobs = rows.slice(1).map(row => {
+        const values = row.split(',');
+        let job = {};
+        header.forEach((col, i) => {
+            job[col.trim()] = values[i].trim();
+        });
+        return job;
+    });
+    return jobs;
+}
+
+function displayJobs(jobs) {
+    const jobListings = document.getElementById('job-listings');
+    jobs.forEach(job => {
+        const jobElement = document.createElement('div');
+        jobElement.className = 'job';
+        
+        const title = document.createElement('h2');
+        title.textContent = job.job_name;
+        jobElement.appendChild(title);
+
+        const company = document.createElement('p');
+        company.textContent = `Company: ${job.company_name}`;
+        jobElement.appendChild(company);
+
+        const location = document.createElement('p');
+        location.className = 'location';
+        location.textContent = `Location: ${job.company_location}`;
+        jobElement.appendChild(location);
+
+        const salary = document.createElement('p');
+        salary.className = 'salary';
+        salary.textContent = `Salary: ${job.salary}`;
+        jobElement.appendChild(salary);
+
+        const description = document.createElement('p');
+        description.textContent = `Description: ${job.job_description}`;
+        jobElement.appendChild(description);
+
+        const apply = document.createElement('p');
+        apply.className = 'apply';
+        const applyLink = document.createElement('a');
+        applyLink.href = job.job_apply_url;
+        applyLink.target = '_blank';
+        applyLink.textContent = 'Apply Here';
+        apply.appendChild(applyLink);
+        jobElement.appendChild(apply);
+
+        jobListings.appendChild(jobElement);
+    });
+}
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Jobs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 95%;
+            margin: 20px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .company {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .company-item {
+            margin: 10px;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            flex: 1 1 calc(25% - 40px); /* 4 items per row with gap */
+            max-width: calc(25% - 40px);
+            text-align: center;
+        }
+        .company-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .company-item img {
+            max-width: 100px;
+            height: auto;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+        .company-item .company-info {
+            padding: 10px 0;
+        }
+        .company-item .company-info h3 {
+            margin: 0;
+            color: #333;
+            font-size: 1.2em;
+        }
+        .company-item .company-info p {
+            margin: 5px 0;
+            color: #666;
+            font-size: 0.9em;
+        }
+        .company-item button {
+            background-color: #4a4b86;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .company-item button:hover {
+            background-color: #45a049;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        @media (max-width: 768px) {
+            .company-item {
+                flex: 1 1 calc(50% - 40px); /* 2 items per row with gap */
+                max-width: calc(50% - 40px);
+            }
+        }
+        @media (max-width: 480px) {
+            .company-item {
+                flex: 1 1 calc(100% - 40px); /* 1 item per row with gap */
+                max-width: calc(100% - 40px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Explore Job Opportunities</h1>
+        <div class="company">
+            <div class="company-item">
+                <img src="https://github.com/ganeshbodakhe33/JobCraze/blob/main/uber.png" alt="Uber Logo">
+                <div class="company-info">
+                    <h3>Uber</h3>
+                    <p>Redefining urban mobility</p>
+                    <button onclick="window.location.href='https://www.uber.com/global/en/careers/'">Explore Jobs</button>
+                </div>
+            </div>
+            <div class="company-item">
+                <img src="capgmni_new.png" alt="Capgemini Logo">
+                <div class="company-info">
+                    <h3>Capgemini</h3>
+                    <p>Unlocking human potential</p>
+                    <button onclick="window.location.href='https://www.capgemini.com/careers/'">Explore Jobs</button>
+                </div>
+            </div>
+            <div class="company-item">
+                <img src="social_media_social_media_logo_amazon-64.webp" alt="Amazon Logo">
+                <div class="company-info">
+                    <h3>Amazon</h3>
+                    <p>Earth's most customer-centric company</p>
+                    <button onclick="window.location.href='https://www.amazon.jobs/en/'">Explore Jobs</button>
+                </div>
+            </div>
+            <div class="company-item">
+                <img src="search-64.webp" alt="Google Logo">
+                <div class="company-info">
+                    <h3>Google</h3>
+                    <p>Do the right thing. Do things right.</p>
+                    <button onclick="window.location.href='https://careers.google.com/'">Explore Jobs</button>
+                </div>
+            </div>
+
+              <!-- Microsoft -->
+              <div class="company-item">
+                <img src="micro.png" alt="Microsoft Logo">
+                <div class="company-info">
+                    <h3>Microsoft</h3>
+                    <p>Empowering us all</p>
+                    <button onclick="window.location.href='https://careers.microsoft.com/'">Explore Jobs</button>
+                </div>
+            </div>
+            <!-- Flipkart -->
+            <div class="company-item">
+                <img src="flipkart-64.webp" alt="Flipkart Logo">
+                <div class="company-info">
+                    <h3>Flipkart</h3>
+                    <p>India's favorite online store</p>
+                    <button onclick="window.location.href='https://www.flipkartcareers.com/'">Explore Jobs</button>
+                </div>
+            </div>
+            <!-- Twitter -->
+            <div class="company-item">
+                <img src="tweet.png" alt="Twitter Logo">
+                <div class="company-info">
+                    <h3>Twitter</h3>
+                    <p>What's happening?</p>
+                    <button onclick="window.location.href='https://careers.twitter.com/'">Explore Jobs</button>
+                </div>
+            </div>
+            <!-- Facebook -->
+            <div class="company-item">
+                <img src="fb.png" alt="Facebook Logo">
+                <div class="company-info">
+                    <h3>Facebook</h3>
+                    <p>Connect with friends and the world</p>
+                    <button onclick="window.location.href='https://www.facebook.com/careers/'">Explore Jobs</button>
+                </div>
+            </div>
+            <!-- Snapchat -->
+            <div class="company-item">
+                <img src="snap.png" alt="Snapchat Logo">
+                <div class="company-info">
+                    <h3>Snapchat</h3>
+                    <p>Share the moment</p>
+                    <button onclick="window.location.href='https://www.snap.com/en-US/jobs/'">Explore Jobs</button>
+                </div>
+            </div>
+            <!-- Jio -->
+            <div class="company-item">
+                <img src="Reliance_Jio_Logo_(October_2015).svg.png" alt="Jio Logo">
+                <div class="company-info">
+                    <h3>Jio</h3>
+                    <p>Digital life</p>
+                    <button onclick="window.location.href='https://careers.jio.com/'">Explore Jobs</button>
+                </div>
+            </div>
+    
+
+
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Company Jobs Page. All rights reserved.</p>
+    </footer>
+</body>
+</html>

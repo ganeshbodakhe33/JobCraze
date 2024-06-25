@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Listings</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        @keyframes backgroundAnimation {
+            0% { background-color: #965e43; }
+            50% { background-color: #965e43; }
+            100% { background-color: #965e43; }
+        }
+
+        @keyframes textAnimation {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        header {
+            background: linear-gradient(90deg, #965e43, #965e43);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: backgroundAnimation 5s infinite;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            /* animation: textAnimation 2s infinite; */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        #job-listings {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .job {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px 0;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .job:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .job h2 {
+            margin: 0 0 10px;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .job p {
+            margin: 5px 0;
+            line-height: 1.5;
+        }
+
+        .job .location, .job .type {
+            font-style: italic;
+            color: #666;
+        }
+
+        .job .salary {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .job .apply a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 15px;
+            background-color: #096799;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .job .apply a:hover {
+            background-color: #3E8E41;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Job Listings</h1>
+    </header>
+    <div id="job-listings"></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const csvData = `
+job_name,company_name,company_location,salary,job_description,job_apply_url
+Frontend Developer,Company A,New York,$100k,Developing front-end web applications,https://apply.companyA.com/frontend
+Backend Developer,Company B,San Francisco,$120k,Building and maintaining server-side applications,https://apply.companyB.com/backend
+Full Stack Developer,Company C,Austin,$110k,Working on both front-end and back-end development,https://apply.companyC.com/fullstack
+`; // Add more job listings here
+
+            const jobs = parseCSV(csvData);
+            displayJobs(jobs);
+        });
+
+        function parseCSV(data) {
+            const rows = data.trim().split('\n');
+            const header = rows[0].split(',');
+            const jobs = rows.slice(1).map(row => {
+                const values = row.split(',');
+                let job = {};
+                header.forEach((col, i) => {
+                    job[col.trim()] = values[i].trim();
+                });
+                return job;
+            });
+            return jobs;
+        }
+
+        function displayJobs(jobs) {
+            const jobListings = document.getElementById('job-listings');
+            jobs.forEach(job => {
+                const jobElement = document.createElement('div');
+                jobElement.className = 'job';
+                
+                const title = document.createElement('h2');
+                title.textContent = job.job_name;
+                jobElement.appendChild(title);
+
+                const company = document.createElement('p');
+                company.textContent = `Company: ${job.company_name}`;
+                jobElement.appendChild(company);
+
+                const location = document.createElement('p');
+                location.className = 'location';
+                location.textContent = `Location: ${job.company_location}`;
+                jobElement.appendChild(location);
+
+                const salary = document.createElement('p');
+                salary.className = 'salary';
+                salary.textContent = `Salary: ${job.salary}`;
+                jobElement.appendChild(salary);
+
+                const description = document.createElement('p');
+                description.textContent = `Description: ${job.job_description}`;
+                jobElement.appendChild(description);
+
+                const apply = document.createElement('p');
+                apply.className = 'apply';
+                const applyLink = document.createElement('a');
+                applyLink.href = job.job_apply_url;
+                applyLink.target = '_blank';
+                applyLink.textContent = 'Apply Here';
+                apply.appendChild(applyLink);
+                jobElement.appendChild(apply);
+
+                jobListings.appendChild(jobElement);
+            });
+        }
+    </script>
+</body>
+</html>
